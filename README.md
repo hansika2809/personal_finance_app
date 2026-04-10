@@ -1,212 +1,147 @@
 # Personal Finance Companion
 
-A cross-platform mobile app built with React Native (Expo) that helps users track spending, set savings goals, and gain insights into their financial habits.
+A simple, clean personal finance tracker built with React Native and Expo. The idea behind this app is to give users a lightweight way to keep track of their daily spending, set savings goals, and understand where their money goes — without the complexity of a full banking app.
 
-## Features Implemented
+I chose React Native with Expo because it lets me build for both Android and iOS from a single codebase, and Expo makes the development workflow really smooth.
 
-| # | Feature | Status |
-|---|---------|--------|
-| 1 | Home Dashboard with Summary | ✅ |
-| 2 | Visual Element (Charts, Trends, Breakdown) | ✅ |
-| 3 | Transaction Tracking (Add, View, Edit, Delete) | ✅ |
-| 4 | Transaction Filtering and Search | ✅ |
-| 5 | Goal / Challenge Feature (No-Spend Streak) | ✅ |
-| 6 | Insights Screen | ✅ |
-| 7 | Smooth Navigation Flow | ✅ |
-| 8 | Empty, Loading, and Error States | ✅ |
-| 9 | Local Data Persistence (AsyncStorage) | ✅ |
-| 10 | State Management (Context + useReducer) | ✅ |
+## What the App Does
 
-## Additional Features
+The app has five main sections:
 
-- Dark Mode support
-- Multi-currency support (INR, USD, EUR, GBP)
-- No-Spend Streak gamification with calendar heatmap
-- Smart spending tips based on patterns
-- Week-over-week spending comparison
-- Monthly trend line chart
-- Category breakdown with progress bars
-- Seed data for immediate demo experience
+**Home Dashboard** — When you open the app, you get a quick snapshot of your finances. There's a balance card at the top, followed by income, expenses, and savings summaries. Below that, there's a bar chart showing your spending over the last 7 days, your top savings goal, and your most recent transactions.
+
+**Transactions** — This is where you can add, view, edit, and delete transactions. Each transaction has an amount, type (income or expense), category, date, and an optional note. There's a search bar to find specific transactions and filter chips to toggle between All, Income, and Expense views. Transactions are grouped by date (Today, Yesterday, etc.) which makes it easy to scan through.
+
+**Goals & Challenges** — I wanted to add something that makes the app feel more engaging, so I built a "No-Spend Streak" feature. It tracks how many consecutive days you've gone without spending and shows a calendar heatmap of your spend/no-spend days. Below that, you can create savings goals with custom icons and colors, track progress, and add funds toward each goal.
+
+**Insights** — This screen helps you understand your spending patterns. It shows your top spending category, a week-over-week comparison (with percentage change), a category breakdown with horizontal bars, and a monthly trend line chart. There's also a smart tip at the bottom that gives you context-aware advice based on your actual spending data.
+
+**Settings** — You can change your name, set a monthly budget, toggle dark mode, switch between currencies (INR, USD, EUR, GBP), or reset all data.
+
+## Features Checklist
+
+- [x] Home Dashboard with financial summary
+- [x] Visual elements (bar chart, line chart, category breakdown)
+- [x] Transaction tracking — add, view, edit, delete
+- [x] Transaction filtering and search
+- [x] Goal/Challenge feature (No-Spend Streak + Savings Goals)
+- [x] Insights screen with spending analysis
+- [x] Smooth navigation with bottom tabs and modal transitions
+- [x] Empty states, loading states, and error handling
+- [x] Local data persistence using AsyncStorage
+- [x] State management with Context API and useReducer
+- [x] Dark mode
+- [x] Multi-currency support
 
 ## Tech Stack
 
-- **Framework**: React Native with Expo SDK 54
-- **Navigation**: React Navigation (Bottom Tabs + Native Stack)
-- **State Management**: React Context API with useReducer
-- **Local Storage**: AsyncStorage (offline-first)
-- **Charts**: react-native-chart-kit with react-native-svg
-- **Date Handling**: date-fns
-- **Icons**: @expo/vector-icons (Ionicons)
+- **React Native** with **Expo SDK 54**
+- **React Navigation** — bottom tabs + native stack for modals
+- **Context API + useReducer** — for global state management
+- **AsyncStorage** — for offline-first local data persistence
+- **react-native-chart-kit** — for bar and line charts
+- **date-fns** — for date formatting and calculations
+- **Ionicons** — for all the icons throughout the app
 
 ## Project Structure
 
 ```
 FinanceApp/
-├── App.js                              # Entry point
+├── App.js                     — app entry point, wraps providers
 ├── src/
 │   ├── context/
-│   │   ├── AppContext.js               # Global state (transactions, goals, settings)
-│   │   └── ThemeContext.js             # Dark/light mode
+│   │   ├── AppContext.js      — global state (transactions, goals, settings)
+│   │   └── ThemeContext.js    — dark/light mode toggle
 │   ├── data/
-│   │   ├── categories.js              # Category definitions
-│   │   └── seedData.js                # Sample data for first launch
+│   │   ├── categories.js     — category definitions with icons and colors
+│   │   └── seedData.js       — sample data so the app isn't empty on first launch
 │   ├── screens/
-│   │   ├── HomeScreen.js              # Dashboard
-│   │   ├── TransactionsScreen.js      # Transaction list with search/filter
-│   │   ├── AddTransactionScreen.js    # Add/Edit transaction form
-│   │   ├── GoalsScreen.js             # Goals + No-Spend Challenge
-│   │   ├── InsightsScreen.js          # Analytics and patterns
-│   │   └── SettingsScreen.js          # App settings
+│   │   ├── HomeScreen.js
+│   │   ├── TransactionsScreen.js
+│   │   ├── AddTransactionScreen.js
+│   │   ├── GoalsScreen.js
+│   │   ├── InsightsScreen.js
+│   │   └── SettingsScreen.js
 │   ├── components/
-│   │   ├── BalanceCard.js             # Gradient balance display
-│   │   ├── SummaryCards.js            # Income/Expense/Savings row
-│   │   ├── SpendingChart.js           # Weekly bar chart
-│   │   ├── TransactionItem.js         # Transaction list item
-│   │   ├── GoalCard.js                # Goal progress card
-│   │   └── EmptyState.js             # Empty state display
+│   │   ├── BalanceCard.js     — gradient balance display
+│   │   ├── SummaryCards.js    — income/expense/savings row
+│   │   ├── SpendingChart.js   — weekly bar chart
+│   │   ├── TransactionItem.js — single transaction row
+│   │   ├── GoalCard.js        — goal with progress bar
+│   │   └── EmptyState.js      — placeholder for empty screens
 │   ├── navigation/
-│   │   └── AppNavigator.js            # Tab + Stack navigation
+│   │   └── AppNavigator.js    — tab and stack navigator setup
 │   ├── utils/
-│   │   ├── storage.js                 # AsyncStorage helpers
-│   │   ├── formatters.js             # Currency/date formatting
-│   │   └── calculations.js           # Financial computations
+│   │   ├── storage.js         — AsyncStorage read/write helpers
+│   │   ├── formatters.js      — currency and date formatting
+│   │   └── calculations.js    — totals, breakdowns, streaks, trends
 │   └── theme/
-│       └── index.js                   # Design tokens
+│       └── index.js           — color palettes, spacing, typography tokens
 ```
 
-## Setup Instructions
+## How to Run
 
 ### Prerequisites
+- Node.js 18 or higher
+- npm
+- Expo Go app on your phone (for testing on a real device)
 
-- Node.js 18+
-- npm or yarn
-- Expo Go app on your phone (for mobile testing)
-
-### Installation
+### Steps
 
 ```bash
-git clone <your-repo-url>
+# clone the repo
+git clone https://github.com/YOUR_USERNAME/FinanceApp.git
 cd FinanceApp
+
+# install dependencies
 npm install
+
+# start the dev server
+npx expo start
 ```
 
-### Run the App
+Then scan the QR code with Expo Go (Android) or the Camera app (iOS) to run it on your phone.
 
+To run on web for a quick preview:
 ```bash
-# Start the development server
-npx expo start
-
-# Run on Android
-npx expo start --android
-
-# Run on iOS
-npx expo start --ios
-
-# Run on Web (for preview)
 npx expo start --web
 ```
 
-### Build APK (Android)
+## Building the APK
 
 ```bash
-# Install EAS CLI
+# install EAS CLI globally
 npm install -g eas-cli
 
-# Login to Expo account
+# log in to your Expo account
 eas login
 
-# Build APK
+# build the APK
 eas build -p android --profile preview
 ```
 
-Add this to your `eas.json` before building:
+The build takes around 10-15 minutes. Once done, you can download the APK from your Expo dashboard.
 
-```json
-{
-  "build": {
-    "preview": {
-      "android": {
-        "buildType": "apk"
-      }
-    }
-  }
-}
-```
+## Design Decisions and Assumptions
 
-## Assumptions and Design Decisions
+**Offline-first approach** — I went with AsyncStorage for all data persistence. There's no backend or API calls. Everything works offline, which felt right for a personal finance tracker that people would use on the go.
 
-1. **Offline-First**: All data is stored locally using AsyncStorage. No backend required.
-2. **Seed Data**: The app ships with sample transactions and goals so dashboard and charts are populated on first launch.
-3. **Currency**: Defaults to INR (₹) with support for USD, EUR, and GBP in Settings.
-4. **No-Spend Challenge**: Tracks days without any expense as a streak. Calendar heatmap shows last 14 days.
-5. **Smart Tips**: Auto-generated spending advice based on category breakdown percentages.
-6. **Date Handling**: Transactions use current date by default. Date picker UI is shown but simplified for this version.
+**Seed data on first launch** — The app comes pre-loaded with about 20 sample transactions and 2 goals. This way, the dashboard, charts, and insights aren't empty when you first open the app. You can clear everything from Settings > Reset All Data.
 
-## Screens Overview
+**Currency defaults to INR** — Since this is being developed in India, the default currency is Indian Rupee (₹). You can switch to USD, EUR, or GBP from Settings.
 
-### 1. Home Dashboard
-- Greeting with user name and current date
-- Gradient balance card with total balance
-- Income / Expenses / Savings summary cards
-- Weekly spending bar chart (last 7 days)
-- Top goal with progress bar
-- Recent 5 transactions with "See All" link
+**No-Spend Streak as the creative feature** — I picked this because it felt like something that would actually motivate users. It's simple to understand (don't spend today and your streak goes up), visual (calendar heatmap), and gives a sense of progress.
 
-### 2. Transactions
-- Search bar (searches by description and category)
-- Filter chips (All / Income / Expense)
-- Date-grouped transaction list (Today, Yesterday, etc.)
-- Floating action button to add new transaction
-- Long press to delete with confirmation
-- Tap to edit existing transaction
+**Date selection** — The add transaction form shows the current date by default. For a production app, I'd integrate a proper date picker, but for this version the current date works for demo purposes.
 
-### 3. Add/Edit Transaction
-- Income / Expense type toggle
-- Large amount input with currency symbol
-- Category grid with icons
-- Date display
-- Optional notes field
-- Delete option for existing transactions
+**Clean code, no comments** — I focused on writing self-documenting code with clear variable names and function names instead of adding inline comments. The project structure itself is organized to be easy to follow.
 
-### 4. Goals & Challenges
-- No-Spend Streak counter with emoji progression
-- 14-day calendar heatmap (green = no-spend, red = spent)
-- Savings goals with progress bars
-- Add funds to goals
-- Create/Edit/Delete goals with icon and color picker
+## What I'd Add With More Time
 
-### 5. Insights
-- Period selector (This Week / This Month / All Time)
-- Top spending category highlight
-- Week-over-week comparison with percentage change
-- Category breakdown with horizontal bars
-- Monthly spending trend (line chart)
-- Context-aware smart tips
-
-### 6. Settings
-- User name (editable)
-- Monthly budget (editable)
-- Dark mode toggle
-- Currency selection
-- Reset all data
-
-## Architecture
-
-### State Management
-The app uses React Context API with `useReducer` for predictable state updates:
-- `AppContext`: Manages transactions, goals, and settings
-- `ThemeContext`: Manages dark/light mode
-
-### Data Persistence
-- All state changes are automatically saved to AsyncStorage
-- Data loads from AsyncStorage on app startup
-- Falls back to seed data if no saved data exists
-
-### Navigation
-- Bottom Tab Navigator with 5 tabs
-- Native Stack Navigator for modal screens (Add/Edit Transaction)
-- Smooth slide-from-bottom animation for modals
-
-## License
-
-MIT
+- Proper date picker in the transaction form
+- Animated number transitions on the balance card
+- Notification reminders to log transactions
+- Data export (CSV/JSON)
+- Biometric lock
+- Recurring transactions
+- Budget limits per category with alerts
