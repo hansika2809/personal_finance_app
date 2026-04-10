@@ -1,0 +1,76 @@
+export const lightColors = {
+  background: '#F8F9FE',
+  card: '#FFFFFF',
+  cardAlt: '#F0F1FA',
+  primary: '#6C63FF',
+  primaryLight: '#E8E6FF',
+  income: '#00C48C',
+  incomeLight: '#E0FFF5',
+  expense: '#FF6B6B',
+  expenseLight: '#FFE8E8',
+  savings: '#FFB347',
+  savingsLight: '#FFF3E0',
+  text: '#1A1A2E',
+  textSecondary: '#8E8EA9',
+  textTertiary: '#B0B0C8',
+  border: '#E8E8F0',
+  shadow: '#000',
+  tabBar: '#FFFFFF',
+  tabBarBorder: '#E8E8F0',
+  modalOverlay: 'rgba(0,0,0,0.5)',
+  danger: '#FF4757',
+  streak: '#FF9500',
+};
+
+export const darkColors = {
+  background: '#0D0D1A',
+  card: '#1A1A2E',
+  cardAlt: '#252540',
+  primary: '#7B73FF',
+  primaryLight: '#2A2850',
+  income: '#00D9A0',
+  incomeLight: '#0A2E22',
+  expense: '#FF7B7B',
+  expenseLight: '#2E0A0A',
+  savings: '#FFB347',
+  savingsLight: '#2E220A',
+  text: '#F0F0F5',
+  textSecondary: '#8E8EA9',
+  textTertiary: '#5A5A75',
+  border: '#2A2A40',
+  shadow: '#000',
+  tabBar: '#1A1A2E',
+  tabBarBorder: '#2A2A40',
+  modalOverlay: 'rgba(0,0,0,0.7)',
+  danger: '#FF4757',
+  streak: '#FF9500',
+};
+
+export const spacing = {
+  xs: 4,
+  sm: 8,
+  md: 12,
+  lg: 16,
+  xl: 20,
+  xxl: 24,
+  xxxl: 32,
+};
+
+export const borderRadius = {
+  sm: 8,
+  md: 12,
+  lg: 16,
+  xl: 20,
+  xxl: 24,
+  full: 999,
+};
+
+export const fontSize = {
+  xs: 11,
+  sm: 13,
+  md: 15,
+  lg: 17,
+  xl: 20,
+  xxl: 28,
+  hero: 36,
+};
